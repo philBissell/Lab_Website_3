@@ -199,7 +199,7 @@ app.get('/player_info', function(req, res) {
 	db.any(query)
       .then(function (rows) {
         res.render('pages/player_info',{
-      				my_title: "Player Info",
+      				my_ttle: "Player Info",
       				result_1: rows,
 			      });
         })
