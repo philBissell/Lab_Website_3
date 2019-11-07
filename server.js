@@ -200,7 +200,7 @@ app.get('/player_info', function(req, res) {
       .then(function (rows) {
         res.render('pages/player_info',{
       				my_title: "Player Info",
-      				data: rows,
+      				result_1: rows,
 			      });
         })
       .catch(function (err) {
@@ -209,7 +209,7 @@ app.get('/player_info', function(req, res) {
             //console.log("after query")
             res.render('pages/player_info', {
                 title: 'Player Info',
-                data: '',
+                result_1: '',
             });
       })
 });
@@ -221,6 +221,7 @@ app.get('/player_info/post', function(req, res) {
   var query1 = 'select id, name from football_players;';
   var query2 = 'select * from football_players where id = ' + get_variable + ';';
   var query3 = 'SELECT COUNT(*) AS games_played FROM football_players INNER JOIN football_games ON football_players.id = ANY(football_games.players) WHERE id = ' + get_variable + ';';
+
   console.log(query1);
   console.log(query2);
   console.log(query3);
@@ -237,12 +238,12 @@ app.get('/player_info/post', function(req, res) {
     res.render('pages/player_info', {
       my_title: "Player Stats",
       result_1: data2[0],
-      result_2: data2[1],
-      result_3: data2[2]
+      result_2: data2[1][0],
+      result_3: data2[2][0]
     })
     console.log(data2[0]);
-    console.log(data2[1]);
-    console.log(data2[2]);
+    console.log(data2[1][0]);
+    console.log(data2[2][0]);
 
   })
 });
